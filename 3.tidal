@@ -1,2 +1,12 @@
 -- tutorial part 3: effects
+--
+-- we can also apply some effects to our samples!
+
+-- lets crush it!
+d1 $ sound "808bd:3 ~ [can can, 808:4 ~ ~ 808:4] 808bd:3" # crush "4"
+-- the # operator is used to chain effects onto the samples
+-- # is actually shorthand for |=|
+
+hush
+
 
