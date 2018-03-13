@@ -1,0 +1,44 @@
+-- tutorial part 1: understanding rhythmic sequences
+--
+
+-- modify cps (cycles per second)
+
+-- lets start off with a standard beat
+d1 $ sound "bd ~ bd ~"
+-- here we have 4 beats per cycle (measure) and each instrument gets the same time per beat
+
+-- lets change the time signature a little
+d1 $ sound "bd bd ~"
+-- here we have 3 beats per measure
+
+-- let's go back to 4 beats per measure, but lets introduce a subdivision!
+d1 $ sound "bd bd ~ [sn:1 ht]"
+-- here the last beat in the measure is subdivided into 2
+-- we can use this [ ] syntax to specify equal subdivisions of a pattern
+
+-- what about subdividing a subdivision?????
+d1 $ sound "bd bd ~ [808sd:1 [808ht 808mt]]"
+
+-- the [] allow us to layer up patterns by introducing a comma in between the patterns!
+d1 $ sound "[808bd:3 808bd:3, 808lc 808lc 808lc 808lc]"
+
+-- we can even create cool polyrhythms through layering patterns with different
+-- time signatures
+d1 $ sound "[808bd:3 808bd:3, 808lc 808lc 808lc]"
+
+-- we can use a shorthand to write repeatative subdivisions using the multiplication
+d1 $ sound "808bd:3 808lc*3"
+-- the above line is equivalent to the below line
+d1 $ sound "808bd:3 [808lc 808lc 808lc]"
+
+-- the ! can be used to repeat that last event
+d1 $ sound "808bd:3 ! ! !"
+
+-- we can divide subdivisions out to repeate on a slower cycle
+d1 $ sound "808bd:3 [808lc 808ht 808cy 808sd]/2"
+
+-- TODO angle brackets
+
+-- TODO Bjorklund patterns
+
+hush

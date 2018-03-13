@@ -1,0 +1,59 @@
+-- tutorial part 0: getting oriented
+--
+-- this is Haskell, but don't worry, you don't really need to know Haskell to use TidalCycles!
+--
+
+-- let's make a little beat to kick things off
+-- evaluate the line below
+d1 $ sound "bd bd ~ ~"
+-- so what is this doing?
+-- we are playing a pattern of sound samples ("bd bd ~ ~") and sending it to be
+-- output to connection d1
+--
+-- the $ is a Haskell operator which is equivalent to d1 (sound "bd bd ~ ~")
+-- you can think of $ as forcing the evaluation of the expression on the RHS first.
+-- so if we had a $ b $ c d this would be a (b (c d))
+--
+-- "bd bd ~ ~" is a pattern of sounds. In particular, bd is the name of a sample (bass drum)
+-- which is a prepackaged with the SuperDirt sampler. ~ stands for rest.
+
+
+-- before we go any further, let's demystify these samples a bit.
+-- why don't we add our own sample?
+-- all the samples are stored in the following directory
+-- cd /path/to/downloaded-quarks/Dirt-Samples/
+-- we can see that there are a bunch of directories, including one called "bd"
+-- this is where the Dirt sampler fetched all the samples from
+-- mkdir cat
+-- mv path/to/cat_sample.wav ./cat/000_cat.wav
+-- now we have a cat sample! Evaluate the line below!
+d1 $ sound "bd bd ~ cat"
+
+-- hmm thats cool, but maybe we want a snare hit instead of a cat meow
+d1 $ sound "bd bd ~ sn:1"
+-- notice that :1 after the snare sample. this is selecting another sample from the
+-- sn sample directory since you can have many sample variations within a sample dir.
+
+
+-- but wait, what even is "d1"???
+-- we just mentioned casually above that d1 is something we can connect to
+-- but didn't really explain it.
+-- SuperDirt by default comes with 9 open connections to different synths/samplers
+-- which we can send information to using d1-d9
+-- you can think of these connections as different tracks which can be played in parallel
+-- so, if we want to overlay some classic 808 claps on our cool kic/snare beat we already
+-- got playing, we can lay down another pattern on the d2 connection!
+d2 $ sound "808:3 808:3"
+-- sick.
+-- more generally, we aren't limited to sending our patterns to only the SuperDirt
+-- synth/sampler. We can theoretically send these patterns to any device which takes
+-- MIDI or OSC (Open Sound control) signals as input! This means, you can control an
+-- amazing analog synthesizer (which supports MIDI) using TidalCycles! For example, i
+-- can control my Juno 60 using it (since i have a MIDI to DCB converter ^-^)
+-- for more info, check out https://github.com/tidalcycles/tidal-midi
+
+-- okay let's stop the d2 channel
+d2 $ silence
+
+-- or stop all channels
+hush
