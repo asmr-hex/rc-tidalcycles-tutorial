@@ -1,8 +1,6 @@
 -- tutorial part 1: understanding rhythmic sequences
 --
 
--- modify cps (cycles per second)
-
 -- lets start off with a standard beat
 d1 $ sound "bd ~ bd ~"
 -- here we have 4 beats per cycle (measure) and each instrument gets the same time per beat
@@ -37,8 +35,29 @@ d1 $ sound "808bd:3 ! ! !"
 -- we can divide subdivisions out to repeate on a slower cycle
 d1 $ sound "808bd:3 [808lc 808ht 808cy 808sd]/2"
 
--- TODO angle brackets
+-- we can use angle brackets to make patterns with more variations
+-- this alternates between "bd hh" and "bd can" on successive loops
+d1 $ sound "bd <hh can>"
 
--- TODO Bjorklund patterns
+-- this can get complicated very quickly!
+d1 $ sound "<[bd, hh*2]*3 <[can*2 sn] [hh*4 hh*8]>>"
+
+-- Euclidean rhythm
+-- fit n sounds in m beats
+-- http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf
+d1 $ sound "bd(3,8)"
+-- equivalent to "bd ~ ~ bd ~ ~ bd ~" (Cuban tresillo)
+
+d1 $ sound "bd(5,8)"
+-- equivalent to "bd ~ bd bd ~ bd bd ~" (Cuban cinquillo)
+
+d1 $ sound "hh(7,12)"
+-- Mpre rhythm of the Ashanti people
+
+-- modify cps (cycles per second)
+cps 0.5
+
+-- faster!
+cps 2.0
 
 hush
