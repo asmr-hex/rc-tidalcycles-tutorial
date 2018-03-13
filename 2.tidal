@@ -1,9 +1,39 @@
 -- tutorial part 2: functions
 
--- slow/density
+-- we can apply functions to the patterns
+d1 $ slow 4 $ sound "bd hh hh hh"
+-- slow makes the pattern go slower... cool.
+-- what do you think fast does?
 
--- rev
+d1 $ fast 4 $ sound "bd hh hh hh"
+-- yup.
 
--- degrade
+-- reversing patterns can be alright.
+d1 $ rev $ sound "bd hh sn hh"
+
+-- but it only really becomes interesting when combined with every
+d1 $ every 4 (rev) $ sound "bd hh sn:2 hh"
+
+-- of course, you can use every with every function (see what i did there?)
+d1 $ every 4 (fast 4) $ sound "bd hh sn:2 hh"
+-- notice that it repeats the pattern 4 times in order to fill the same amount
+-- of space as the unaltered pattern!
+
+-- this is all very deterministic...
+d1 $ degrade $ sound "bd hh"
+-- degrade decides not to play the pattern sometimes
+
+d1 $ sometimes (fast 4) $ sound "hh hh"
+-- you know, it does it sometimes. when it feels like it.
 
 -- chop
+d1 $ chop 32 $ sound "bd sn"
+-- breaks each sample into 32 "grains" and constructs a new pattern with the
+-- result. makes grainy sounds!
+
+d1 $ chop 16 $ sound "bd ~ sn bd ~ [~ bd]/2 [sn [~ bd]/2] ~"
+
+-- try combining these! for example
+d1 $ every 4 (rev) $ chop 16 $ sound "bd ~ sn bd ~ [~ bd]/2 [sn [~ bd]/2] ~"
+
+hush
