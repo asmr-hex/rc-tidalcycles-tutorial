@@ -7,6 +7,24 @@ d1 $ sound "808bd:3 ~ [can can, 808:4 ~ ~ 808:4] 808bd:3" # crush "4"
 -- the # operator is used to chain effects onto the samples
 -- # is actually shorthand for |=|
 
+-- we can actually make patterns of effects as well!! check it out!
+d1 $ sound "arpy:1 arpy:6 arpy:8" # vowel "a e y"
+
+-- lets set the legato, the time we allow the sample to fill the space
+d1 $ sound "rave cat cat" # legato "0.2"
+-- possibly the most annoying samples in existence. you're welcome.
+
+-- we can also set the lowpass cutoff frequency
+d1 $ sound "arpy:1 arpy:6 arpy:8" # cutoff "600"
+
+-- throw some resonance on that
+d1 $ sound "arpy:1 arpy:6 arpy:8" # cutoff "6000 2000 1000 600 400" # resonance "0.5"
+
+-- highpass
+d1 $ sound "arpy:1 arpy:6 arpy:8" # hcutoff "6000 2000 400"
+
+-- some nice delay!
+d1 $ sound "arpy:1 arpy:6 <arpy:9 arpy:8 arpy:5 arpy:10>" # delay "0.4" # delayfeedback "0.4" # delaytime "0.4"
+
+
 hush
-
-
